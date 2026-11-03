@@ -347,7 +347,7 @@ export const ChatWorkspace: React.FC<ChatWorkspaceProps> = ({
                   <button
                     key={i}
                     onClick={() => onSendMessage(q)}
-                    className="w-full text-left p-3 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-850 hover:border-rose-300 dark:hover:border-rose-900 hover:bg-rose-50/40 dark:hover:bg-rose-950/20 text-xs text-slate-800 dark:text-slate-200 font-medium transition-all flex items-center justify-between group shadow-2xs"
+                    className="w-full text-left p-3 rounded-lg border border-slate-200 dark:border-slate-700/80 bg-white dark:bg-slate-800 hover:border-rose-400 dark:hover:border-rose-500 hover:bg-rose-50/50 dark:hover:bg-slate-700/90 text-xs text-slate-800 dark:text-slate-100 font-medium transition-all flex items-center justify-between group shadow-xs"
                   >
                     <span className="leading-snug">{q}</span>
                     <span className="text-rose-700 dark:text-rose-400 opacity-0 group-hover:opacity-100 transition-opacity ml-2 shrink-0">

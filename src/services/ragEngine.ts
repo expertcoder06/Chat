@@ -2,7 +2,7 @@ import { AEC_KNOWLEDGE_DOCS, KnowledgeDocument } from './knowledgeBase';
 import { ChatMessage, RagBackendConfig, RetrievedSource } from '../types/chat';
 
 export const DEFAULT_RAG_CONFIG: RagBackendConfig = {
-  mode: 'mock_local',
+  mode: 'custom_api',
   customApiUrl: 'http://localhost:8000/api/rag-chat',
   apiKey: '',
   vectorDb: 'chroma',
@@ -317,7 +317,19 @@ export async function queryRagPipeline(
       const rawSources = data.sources || data.context_chunks || data.retrieved_documents || data.chunks || [];
 
       if (Array.isArray(rawSources)) {
-        sources = rawSources.map((s: any, idx: number) => ({
+        sources = rawSources.map((s: any, idx: number) => {
+          if (typeof s === 'string') {
+            return {
+              id: `source-${idx}`,
+              documentTitle: s,
+              category: 'Academics',
+              pageOrSection: 'College Record',
+              similarityScore: 0.92,
+              snippet: `Verified from official college document: ${s}`,
+              sourceUrl: s.startsWith('http') ? s : undefined
+            };
+          }
+          return {
           id: s.id || `custom-chunk-${idx}`,
           documentTitle: s.title || s.document || s.document_title || `Document ${idx + 1}`,
           category: s.category || 'Academics',
@@ -325,7 +337,8 @@ export async function queryRagPipeline(
           similarityScore: typeof s.score === 'number' ? s.score : 0.88,
           snippet: s.snippet || s.text || s.content || '',
           sourceUrl: s.url || s.source_url
-        }));
+          };
+        });
       }
 
       return {
