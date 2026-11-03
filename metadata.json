@@ -1,0 +1,6 @@
+{
+  "name": "AEC Campus RAG AI Assistant",
+  "description": "Official AI student assistant and RAG knowledge interface for Asansol Engineering College (AEC), featuring vector search sources, campus guidelines, and pluggable backend support.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
